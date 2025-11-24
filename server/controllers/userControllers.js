@@ -74,18 +74,36 @@ const allUsers = asyncHandler(async (req, res) => {
 });
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
+    try {
+        console.log("Profile update request received:", {
+            userId: req.user._id,
+            hasName: !!req.body.name,
+            hasPic: !!req.body.pic,
+            hasPassword: !!req.body.password
+        });
 
-    if (user) {
+        const user = await User.findById(req.user._id);
+
+        if (!user) {
+            console.error("User not found:", req.user._id);
+            res.status(404);
+            throw new Error("User not Found");
+        }
+
+        console.log("User found, updating fields...");
+
         user.name = req.body.name || user.name;
         user.pic = req.body.pic || user.pic;
 
         // Only update password if a new one is provided
         if (req.body.password && req.body.password.trim() !== "") {
+            console.log("Updating password...");
             user.password = req.body.password;
         }
 
+        console.log("Saving user...");
         const updatedUser = await user.save();
+        console.log("User saved successfully");
 
         res.json({
             _id: updatedUser._id,
@@ -95,9 +113,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             isAdmin: updatedUser.isAdmin,
             token: generateToken(updatedUser._id),
         });
-    } else {
-        res.status(404);
-        throw new Error("User not Found");
+    } catch (error) {
+        console.error("Profile update error:", error);
+        res.status(500);
+        throw error;
     }
 });
 
