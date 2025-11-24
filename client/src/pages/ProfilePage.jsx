@@ -75,14 +75,20 @@ const ProfilePage = () => {
                 },
             };
 
+            // Only include password if it's being updated
+            const updateData = {
+                name,
+                pic,
+            };
+
+            if (password && password.trim() !== "") {
+                updateData.password = password;
+            }
+
             const API_URL = import.meta.env.VITE_BACKEND_URL;
             const { data } = await axios.put(
                 `${API_URL}/api/user/profile`,
-                {
-                    name,
-                    pic,
-                    password,
-                },
+                updateData,
                 config
             );
 

@@ -80,7 +80,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.name = req.body.name || user.name;
         user.pic = req.body.pic || user.pic;
 
-        if (req.body.password) {
+        // Only update password if a new one is provided
+        if (req.body.password && req.body.password.trim() !== "") {
             user.password = req.body.password;
         }
 
