@@ -1,0 +1,52 @@
+/* Signup.css */
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.signup-show-password-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: -0.5rem;
+}
+
+.signup-show-password-checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+    cursor: pointer;
+    accent-color: var(--primary-start);
+}
+
+.signup-show-password-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+}
+
+.signup-file-input-container {
+    position: relative;
+}
+
+.signup-upload-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--primary-start);
+}
+
+.signup-submit-btn {
+    margin-top: 0.5rem;
+}
+
+.signup-loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}

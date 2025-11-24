@@ -1,0 +1,64 @@
+/* Responsive utility styles */
+
+/* Mobile-first approach */
+@media (max-width: 480px) {
+
+    /* Hide text on very small screens */
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    /* Full width on mobile */
+    .mobile-full-width {
+        width: 100% !important;
+    }
+
+    /* Smaller padding on mobile */
+    .mobile-small-padding {
+        padding: 0.5rem !important;
+    }
+
+    /* Stack elements vertically on mobile */
+    .mobile-stack {
+        flex-direction: column !important;
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .tablet-hide {
+        display: none !important;
+    }
+
+    .tablet-show {
+        display: block !important;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+    .desktop-hide {
+        display: none !important;
+    }
+
+    .desktop-show {
+        display: block !important;
+    }
+}
+
+/* Common responsive utilities */
+.responsive-text {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.responsive-heading {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.responsive-padding {
+    padding: clamp(0.5rem, 2vw, 2rem);
+}
+
+.responsive-gap {
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+}

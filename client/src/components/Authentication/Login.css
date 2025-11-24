@@ -1,0 +1,39 @@
+/* Login.css */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.login-show-password-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: -0.5rem;
+}
+
+.login-show-password-checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+    cursor: pointer;
+    accent-color: var(--primary-start);
+}
+
+.login-show-password-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+}
+
+.login-submit-btn {
+    margin-top: 0.5rem;
+}
+
+.login-loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}

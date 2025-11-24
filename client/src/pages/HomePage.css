@@ -1,0 +1,126 @@
+/* HomePage.css */
+
+.home-page-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-page-animated-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    animation: float 20s infinite ease-in-out;
+}
+
+.home-page-animated-circle:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.home-page-animated-circle:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: 7s;
+}
+
+.home-page-animated-circle:nth-child(3) {
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 14s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+.home-page-card {
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 1;
+}
+
+.home-page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: -1px;
+}
+
+.home-page-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
+    border-radius: 16px;
+}
+
+.home-page-tab {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.home-page-tab.active {
+    background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);
+}
+
+.home-page-tab:hover:not(.active) {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--primary-start);
+}
+
+@media (max-width: 768px) {
+    .home-page-container {
+        padding: 1.5rem;
+    }
+
+    .home-page-card {
+        max-width: 100%;
+    }
+
+    .home-page-title {
+        font-size: 2.5rem;
+    }
+
+    .home-page-animated-circle {
+        display: none;
+    }
+}

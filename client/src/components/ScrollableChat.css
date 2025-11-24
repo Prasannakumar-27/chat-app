@@ -1,0 +1,117 @@
+/* ScrollableChat.css */
+
+.scrollable-chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.scrollable-chat-message {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.scrollable-chat-message.own-message {
+    flex-direction: row-reverse;
+}
+
+.scrollable-chat-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-start);
+    flex-shrink: 0;
+}
+
+.scrollable-chat-bubble-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
+
+.own-message .scrollable-chat-bubble-container {
+    align-items: flex-end;
+}
+
+.scrollable-chat-sender-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    padding: 0 0.75rem;
+}
+
+.scrollable-chat-bubble {
+    padding: 0.875rem 1.25rem;
+    border-radius: 18px;
+    word-wrap: break-word;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.scrollable-chat-bubble:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-chat-bubble.other-message {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    border-bottom-left-radius: 4px;
+    color: var(--text-primary);
+}
+
+.scrollable-chat-bubble.own-message-bubble {
+    background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+    border-bottom-right-radius: 4px;
+    color: white;
+}
+
+.scrollable-chat-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.25rem;
+}
+
+.scrollable-chat-timestamp {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    text-align: right;
+}
+
+.own-message-bubble .scrollable-chat-timestamp {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.other-message .scrollable-chat-timestamp {
+    color: var(--text-secondary);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .scrollable-chat-bubble-container {
+        max-width: 85%;
+    }
+
+    .scrollable-chat-avatar {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .scrollable-chat-bubble {
+        padding: 0.75rem 1rem;
+    }
+}

@@ -1,0 +1,133 @@
+/* ProfileModal.css */
+
+.profile-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justifyContent: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+}
+
+.profile-modal-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 255, 0.98) 100%);
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    z-index: 10000;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease-out;
+}
+
+.profile-modal-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0.625rem;
+    border-radius: 10px;
+    z-index: 10001;
+    transition: all 0.2s;
+}
+
+.profile-modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.profile-modal-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-right: 2.5rem;
+}
+
+.profile-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-modal-avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-start);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.profile-modal-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.profile-modal-form-group {
+    margin-bottom: 0.5rem;
+}
+
+.profile-modal-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.profile-modal-input {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.profile-modal-file-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+}
+
+.profile-modal-upload-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--primary-start);
+}
+
+.profile-modal-submit-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.profile-modal-email-view {
+    text-align: center;
+    padding: 1rem;
+}
+
+.profile-modal-email-text {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    word-break: break-word;
+}
+
+.profile-modal-email-label {
+    color: var(--text-primary);
+    font-size: 1rem;
+}

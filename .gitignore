@@ -1,0 +1,31 @@
+# Root .gitignore for the chatting app project
+# Dependency directories
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output directories
+client/dist/
+client/build/
+server/build/
+
+# Environment files
+.env
+client/.env
+server/.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.iml
+
+# Test coverage
+coverage/

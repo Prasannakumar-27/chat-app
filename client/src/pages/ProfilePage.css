@@ -1,0 +1,114 @@
+/* ProfilePage.css - Clean version */
+
+.profile-page-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    padding: 2rem;
+}
+
+.profile-page-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile-page-card {
+    padding: 3rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.profile-page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.profile-page-avatar {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-start);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-page-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Tablet: 769px - 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profile-page-card {
+        padding: 2.5rem 2rem;
+    }
+
+    .profile-page-title {
+        font-size: 2.25rem;
+    }
+
+    .profile-page-avatar {
+        width: 9rem;
+        height: 9rem;
+    }
+}
+
+/* Mobile: Below 768px */
+@media (max-width: 768px) {
+    .profile-page-container {
+        padding: 1rem;
+    }
+
+    .profile-page-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .profile-page-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .profile-page-avatar {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .profile-page-form {
+        gap: 1.25rem;
+    }
+
+    .profile-page-actions {
+        flex-direction: column;
+    }
+}
+
+/* Small Mobile: Below 480px */
+@media (max-width: 480px) {
+    .profile-page-container {
+        padding: 0.5rem;
+    }
+
+    .profile-page-card {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+
+    .profile-page-title {
+        font-size: 1.75rem;
+    }
+
+    .profile-page-avatar {
+        width: 7rem;
+        height: 7rem;
+    }
+}
