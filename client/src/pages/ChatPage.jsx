@@ -32,26 +32,25 @@ const ChatPage = () => {
     }
 
     return (
-        <div style={{
-            background: 'linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%)',
+        <div className="chat-page-container" style={{
+            background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
             minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden'
         }}>
             {user && <SideDrawer />}
-            <div style={{
+            <div className="chat-page-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: isMobile ? '1fr' : window.innerWidth <= 1024 ? '1fr 1.5fr' : '1fr 2fr',
-                gap: isMobile ? '0' : '1rem',
-                padding: isMobile ? '0.5rem' : '1rem',
+                gap: isMobile ? '0' : window.innerWidth <= 1024 ? '0.75rem' : '1rem',
+                padding: isMobile ? '0.5rem' : window.innerWidth <= 1024 ? '0.75rem' : '1rem',
                 height: 'calc(100vh - 100px)',
-                maxWidth: '1400px',
+                maxWidth: window.innerWidth <= 1024 ? '100%' : window.innerWidth <= 1440 ? '1280px' : '1400px',
                 margin: '0 auto',
                 width: '100%',
                 overflow: 'hidden'
-            }}
-                className="chat-page-grid">
+            }}>
                 {/* On mobile: show MyChats only when no chat is selected */}
                 {user && (!isMobile || !selectedChat) && (
                     <div style={{

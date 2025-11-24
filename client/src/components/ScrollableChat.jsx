@@ -51,14 +51,18 @@ const ScrollableChat = ({ messages }) => {
                             }}
                         >
                             {!isOwnMessage && (
-                                <div style={{ width: '40px', marginRight: '8px' }}>
+                                <div style={{
+                                    width: window.innerWidth <= 640 ? '32px' : '40px',
+                                    marginRight: window.innerWidth <= 640 ? '6px' : '8px',
+                                    flexShrink: 0
+                                }}>
                                     {showAvatar && (
                                         <img
-                                            className="hover-lift"
+                                            className="hover-lift message-avatar"
                                             style={{
                                                 borderRadius: "50%",
-                                                width: "40px",
-                                                height: "40px",
+                                                width: window.innerWidth <= 640 ? '32px' : '40px',
+                                                height: window.innerWidth <= 640 ? '32px' : '40px',
                                                 objectFit: "cover",
                                                 border: '2px solid var(--primary-start)',
                                                 boxShadow: 'var(--shadow-sm)',
@@ -72,33 +76,33 @@ const ScrollableChat = ({ messages }) => {
                                 </div>
                             )}
 
-                            <div style={{
-                                maxWidth: '70%',
+                            <div className="message-bubble-container" style={{
+                                maxWidth: window.innerWidth <= 640 ? '85%' : window.innerWidth <= 1024 ? '75%' : '70%',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: isOwnMessage ? 'flex-end' : 'flex-start'
                             }}>
                                 {!isOwnMessage && !isSameUser(messages, m, i) && (
                                     <span style={{
-                                        fontSize: '0.75rem',
+                                        fontSize: window.innerWidth <= 640 ? '0.7rem' : '0.75rem',
                                         color: 'var(--text-secondary)',
                                         marginBottom: '4px',
-                                        marginLeft: '12px',
+                                        marginLeft: window.innerWidth <= 640 ? '8px' : '12px',
                                         fontWeight: '600'
                                     }}>
                                         {m.sender.name}
                                     </span>
                                 )}
 
-                                <div className="hover-lift" style={{
+                                <div className="hover-lift message-bubble" style={{
                                     background: isOwnMessage
                                         ? 'linear-gradient(135deg, var(--primary-start), var(--primary-end))'
                                         : 'white',
                                     color: isOwnMessage ? 'white' : 'var(--text-primary)',
                                     borderRadius: isOwnMessage
-                                        ? '20px 20px 4px 20px'
-                                        : '20px 20px 20px 4px',
-                                    padding: "12px 16px",
+                                        ? window.innerWidth <= 640 ? '16px 16px 4px 16px' : '20px 20px 4px 20px'
+                                        : window.innerWidth <= 640 ? '16px 16px 16px 4px' : '20px 20px 20px 4px',
+                                    padding: window.innerWidth <= 640 ? "10px 14px" : "12px 16px",
                                     boxShadow: isOwnMessage ? 'var(--shadow-md)' : 'var(--shadow-sm)',
                                     wordWrap: 'break-word',
                                     position: 'relative',
@@ -106,13 +110,13 @@ const ScrollableChat = ({ messages }) => {
                                 }}>
                                     <p style={{
                                         margin: 0,
-                                        fontSize: '0.95rem',
+                                        fontSize: window.innerWidth <= 640 ? '0.875rem' : '0.95rem',
                                         lineHeight: '1.5'
                                     }}>
                                         {m.content}
                                     </p>
                                     <span style={{
-                                        fontSize: '0.7rem',
+                                        fontSize: window.innerWidth <= 640 ? '0.65rem' : '0.7rem',
                                         opacity: 0.7,
                                         marginTop: '4px',
                                         display: 'block',
@@ -123,7 +127,7 @@ const ScrollableChat = ({ messages }) => {
                                 </div>
                             </div>
 
-                            {isOwnMessage && <div style={{ width: '40px' }}></div>}
+                            {isOwnMessage && <div style={{ width: window.innerWidth <= 640 ? '32px' : '40px', flexShrink: 0 }}></div>}
                         </div>
                     );
                 })}

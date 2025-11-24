@@ -68,31 +68,33 @@ const SideDrawer = () => {
 
     return (
         <>
-            <div className="glass-card" style={{
+            <div className="glass-card side-drawer-header" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 width: '100%',
-                padding: '1rem 1.5rem',
-                margin: '1rem 1rem 0 1rem',
+                padding: window.innerWidth <= 640 ? '0.75rem 1rem' : '1rem 1.5rem',
+                margin: window.innerWidth <= 640 ? '0.5rem 0.5rem 0 0.5rem' : '1rem 1rem 0 1rem',
                 background: 'rgba(255, 255, 255, 0.95)',
                 backdropFilter: 'blur(10px)',
-                borderRadius: '20px',
+                borderRadius: window.innerWidth <= 640 ? '16px' : '20px',
                 boxShadow: 'var(--shadow-lg)',
                 position: 'relative',
-                zIndex: 100
+                zIndex: 100,
+                gap: '0.5rem',
+                flexWrap: 'wrap'
             }}>
                 <button
                     className="btn btn-ghost flex items-center gap-2 hover-lift"
                     onClick={() => setIsSearchOpen(true)}
-                    style={{ padding: '0.625rem 1rem' }}
+                    style={{ padding: window.innerWidth <= 640 ? '0.5rem 0.75rem' : '0.625rem 1rem' }}
                 >
                     <FaSearch style={{ color: 'var(--primary-start)' }} />
-                    <span className="hidden md:inline" style={{ fontWeight: '500' }}>Search User</span>
+                    <span className="mobile-hide" style={{ fontWeight: '500' }}>Search User</span>
                 </button>
 
                 <h1 className="gradient-text" style={{
-                    fontSize: '1.75rem',
+                    fontSize: window.innerWidth <= 640 ? '1.25rem' : window.innerWidth <= 1024 ? '1.5rem' : '1.75rem',
                     fontWeight: '700',
                     letterSpacing: '-0.5px'
                 }}>
@@ -102,19 +104,21 @@ const SideDrawer = () => {
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => navigate("/profile")}
-                        className="flex items-center gap-2 btn-ghost p-2 rounded-lg hover-lift"
+                        className="flex items-center gap-2 btn-ghost p-2 rounded-lg hover-lift profile-button"
                         style={{
                             padding: "0.5rem",
                             borderRadius: "12px",
-                            transition: "all 0.2s"
+                            transition: "all 0.2s",
+                            minWidth: '44px',
+                            minHeight: '44px'
                         }}
                     >
                         <img
                             src={user.pic}
                             alt={user.name}
                             style={{
-                                width: "40px",
-                                height: "40px",
+                                width: window.innerWidth <= 640 ? "36px" : "40px",
+                                height: window.innerWidth <= 640 ? "36px" : "40px",
                                 borderRadius: "50%",
                                 objectFit: "cover",
                                 border: '3px solid var(--primary-start)',
@@ -138,15 +142,15 @@ const SideDrawer = () => {
                     justifyContent: "center",
                     backgroundColor: "rgba(0, 0, 0, 0.6)",
                     backdropFilter: 'blur(5px)',
-                    padding: '2rem'
+                    padding: window.innerWidth <= 640 ? '1rem' : '2rem'
                 }}>
-                    <div style={{
+                    <div className="search-modal" style={{
                         background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 255, 0.98) 100%)',
-                        padding: "2.5rem",
-                        borderRadius: "24px",
+                        padding: window.innerWidth <= 640 ? '1.5rem' : '2.5rem',
+                        borderRadius: window.innerWidth <= 640 ? '20px' : '24px',
                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
                         width: "100%",
-                        maxWidth: "600px",
+                        maxWidth: window.innerWidth <= 640 ? '100%' : '600px',
                         position: "relative",
                         zIndex: 10000,
                         maxHeight: '90vh',

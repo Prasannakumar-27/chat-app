@@ -1,31 +1,146 @@
-/* Responsive utility styles */
+/* ============================================
+   RESPONSIVE DESIGN SYSTEM
+   Mobile-first approach with breakpoints:
+   - Mobile: < 640px
+   - Tablet: 640px - 1024px
+   - Laptop: 1024px - 1440px
+   - Desktop: > 1440px
+   ============================================ */
 
-/* Mobile-first approach */
-@media (max-width: 480px) {
+/* ============================================
+   BASE RESPONSIVE UTILITIES
+   ============================================ */
 
-    /* Hide text on very small screens */
-    .hidden-mobile {
+/* Fluid Typography */
+.text-xs {
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+}
+
+.text-sm {
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
+}
+
+.text-base {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+}
+
+.text-lg {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+}
+
+.text-xl {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+.text-2xl {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+}
+
+.text-3xl {
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
+}
+
+/* Fluid Spacing */
+.spacing-xs {
+    padding: clamp(0.25rem, 1vw, 0.5rem);
+}
+
+.spacing-sm {
+    padding: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.spacing-md {
+    padding: clamp(0.75rem, 2vw, 1rem);
+}
+
+.spacing-lg {
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.spacing-xl {
+    padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Fluid Gaps */
+.gap-responsive-sm {
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.gap-responsive-md {
+    gap: clamp(0.75rem, 2vw, 1rem);
+}
+
+.gap-responsive-lg {
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* ============================================
+   MOBILE STYLES (< 640px)
+   ============================================ */
+@media (max-width: 639px) {
+    .mobile-hide {
         display: none !important;
     }
 
-    /* Full width on mobile */
+    .mobile-show {
+        display: block !important;
+    }
+
     .mobile-full-width {
         width: 100% !important;
     }
 
-    /* Smaller padding on mobile */
-    .mobile-small-padding {
-        padding: 0.5rem !important;
-    }
-
-    /* Stack elements vertically on mobile */
     .mobile-stack {
         flex-direction: column !important;
     }
+
+    .mobile-text-center {
+        text-align: center !important;
+    }
+
+    .mobile-padding-sm {
+        padding: 0.5rem !important;
+    }
+
+    .mobile-padding-md {
+        padding: 0.75rem !important;
+    }
+
+    .mobile-gap-sm {
+        gap: 0.5rem !important;
+    }
+
+    /* Mobile-specific component styles */
+    .chat-container-mobile {
+        height: calc(100vh - 80px) !important;
+        padding: 0.5rem !important;
+    }
+
+    .chat-header-mobile {
+        padding: 0.75rem !important;
+        font-size: 1rem !important;
+    }
+
+    .chat-input-mobile {
+        padding: 0.75rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .avatar-mobile {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .btn-mobile {
+        padding: 0.625rem 1rem !important;
+        font-size: 0.875rem !important;
+    }
 }
 
-/* Tablet styles */
-@media (min-width: 481px) and (max-width: 1024px) {
+/* ============================================
+   TABLET STYLES (640px - 1024px)
+   ============================================ */
+@media (min-width: 640px) and (max-width: 1023px) {
     .tablet-hide {
         display: none !important;
     }
@@ -33,10 +148,78 @@
     .tablet-show {
         display: block !important;
     }
+
+    .tablet-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tablet-padding-md {
+        padding: 1rem !important;
+    }
+
+    .tablet-gap-md {
+        gap: 1rem !important;
+    }
+
+    /* Tablet-specific component styles */
+    .chat-container-tablet {
+        height: calc(100vh - 100px) !important;
+        padding: 1rem !important;
+    }
+
+    .chat-header-tablet {
+        padding: 1rem !important;
+        font-size: 1.125rem !important;
+    }
+
+    .avatar-tablet {
+        width: 44px !important;
+        height: 44px !important;
+    }
 }
 
-/* Desktop styles */
-@media (min-width: 1025px) {
+/* ============================================
+   LAPTOP STYLES (1024px - 1440px)
+   ============================================ */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .laptop-hide {
+        display: none !important;
+    }
+
+    .laptop-show {
+        display: block !important;
+    }
+
+    .laptop-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .laptop-padding-lg {
+        padding: 1.25rem !important;
+    }
+
+    .laptop-gap-lg {
+        gap: 1.25rem !important;
+    }
+
+    /* Laptop-specific component styles */
+    .chat-container-laptop {
+        height: calc(100vh - 100px) !important;
+        padding: 1.25rem !important;
+    }
+
+    .avatar-laptop {
+        width: 48px !important;
+        height: 48px !important;
+    }
+}
+
+/* ============================================
+   DESKTOP STYLES (> 1440px)
+   ============================================ */
+@media (min-width: 1440px) {
     .desktop-hide {
         display: none !important;
     }
@@ -44,21 +227,228 @@
     .desktop-show {
         display: block !important;
     }
+
+    .desktop-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .desktop-padding-xl {
+        padding: 1.5rem !important;
+    }
+
+    .desktop-gap-xl {
+        gap: 1.5rem !important;
+    }
+
+    /* Desktop-specific component styles */
+    .chat-container-desktop {
+        height: calc(100vh - 100px) !important;
+        padding: 1.5rem !important;
+    }
+
+    .avatar-desktop {
+        width: 52px !important;
+        height: 52px !important;
+    }
 }
 
-/* Common responsive utilities */
-.responsive-text {
-    font-size: clamp(0.875rem, 2vw, 1rem);
+/* ============================================
+   RESPONSIVE DISPLAY UTILITIES
+   ============================================ */
+
+/* Show on specific breakpoints */
+@media (min-width: 640px) {
+    .sm\:block {
+        display: block !important;
+    }
+
+    .sm\:flex {
+        display: flex !important;
+    }
+
+    .sm\:inline {
+        display: inline !important;
+    }
+
+    .sm\:hidden {
+        display: none !important;
+    }
 }
 
-.responsive-heading {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+@media (min-width: 768px) {
+    .md\:block {
+        display: block !important;
+    }
+
+    .md\:flex {
+        display: flex !important;
+    }
+
+    .md\:inline {
+        display: inline !important;
+    }
+
+    .md\:hidden {
+        display: none !important;
+    }
+
+    .md\:grid {
+        display: grid !important;
+    }
 }
 
-.responsive-padding {
-    padding: clamp(0.5rem, 2vw, 2rem);
+@media (min-width: 1024px) {
+    .lg\:block {
+        display: block !important;
+    }
+
+    .lg\:flex {
+        display: flex !important;
+    }
+
+    .lg\:inline {
+        display: inline !important;
+    }
+
+    .lg\:hidden {
+        display: none !important;
+    }
+
+    .lg\:grid {
+        display: grid !important;
+    }
 }
 
-.responsive-gap {
-    gap: clamp(0.5rem, 2vw, 1.5rem);
+@media (min-width: 1440px) {
+    .xl\:block {
+        display: block !important;
+    }
+
+    .xl\:flex {
+        display: flex !important;
+    }
+
+    .xl\:inline {
+        display: inline !important;
+    }
+
+    .xl\:hidden {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   CONTAINER QUERIES
+   ============================================ */
+
+.container-responsive {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container-responsive {
+        max-width: 640px;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-responsive {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-responsive {
+        max-width: 1024px;
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container-responsive {
+        max-width: 1280px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container-responsive {
+        max-width: 1400px;
+        padding: 0 2.5rem;
+    }
+}
+
+/* ============================================
+   ASPECT RATIOS
+   ============================================ */
+
+.aspect-square {
+    aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-portrait {
+    aspect-ratio: 3 / 4;
+}
+
+/* ============================================
+   RESPONSIVE IMAGES
+   ============================================ */
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ============================================
+   TOUCH-FRIENDLY TARGETS
+   ============================================ */
+
+@media (max-width: 1023px) {
+    .touch-target {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    button,
+    a,
+    input[type="button"],
+    input[type="submit"] {
+        min-height: 44px;
+    }
+}
+
+/* ============================================
+   ORIENTATION QUERIES
+   ============================================ */
+
+@media (orientation: landscape) and (max-height: 600px) {
+    .landscape-compact {
+        padding: 0.5rem !important;
+    }
+
+    .landscape-compact-header {
+        padding: 0.5rem !important;
+        font-size: 1rem !important;
+    }
 }
