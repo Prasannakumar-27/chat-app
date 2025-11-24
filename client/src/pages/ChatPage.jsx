@@ -37,7 +37,8 @@ const ChatPage = () => {
             minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            position: 'relative'
         }}>
             {user && <SideDrawer />}
             <div className="chat-page-grid" style={{
@@ -49,25 +50,36 @@ const ChatPage = () => {
                 maxWidth: window.innerWidth <= 1024 ? '100%' : window.innerWidth <= 1440 ? '1280px' : '1400px',
                 margin: '0 auto',
                 width: '100%',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                position: 'relative'
             }}>
-                {/* On mobile: show MyChats only when no chat is selected */}
-                {user && (!isMobile || !selectedChat) && (
+                {/* Telegram-style slide animation for mobile */}
+                {user && (
                     <div style={{
                         display: isMobile && selectedChat ? 'none' : 'flex',
                         height: '100%',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        transform: isMobile && selectedChat ? 'translateX(-100%)' : 'translateX(0)',
+                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        position: isMobile ? 'absolute' : 'relative',
+                        width: isMobile ? '100%' : 'auto',
+                        zIndex: isMobile && !selectedChat ? 2 : 1
                     }}>
                         <MyChats />
                     </div>
                 )}
 
-                {/* On mobile: show ChatBox only when a chat is selected */}
-                {user && (!isMobile || selectedChat) && (
+                {/* Chat window with slide-in animation */}
+                {user && (
                     <div style={{
                         display: isMobile && !selectedChat ? 'none' : 'flex',
                         height: '100%',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        transform: isMobile && selectedChat ? 'translateX(0)' : isMobile ? 'translateX(100%)' : 'translateX(0)',
+                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        position: isMobile ? 'absolute' : 'relative',
+                        width: isMobile ? '100%' : 'auto',
+                        zIndex: isMobile && selectedChat ? 2 : 1
                     }}>
                         <ChatBox />
                     </div>

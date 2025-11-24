@@ -1,0 +1,378 @@
+/* ============================================
+   TELEGRAM-STYLE ENHANCEMENTS
+   ============================================ */
+
+/* Smooth slide animations like Telegram */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Telegram-style message animations */
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Smooth transitions for all interactive elements */
+.telegram-transition {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Telegram-style ripple effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Telegram-style chat list item */
+.chat-item-telegram {
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.chat-item-telegram:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.chat-item-telegram:active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Telegram-style message bubble */
+.message-bubble-telegram {
+    animation: messageIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom left;
+}
+
+.message-bubble-telegram.own {
+    transform-origin: bottom right;
+}
+
+/* Telegram-style input focus */
+.telegram-input:focus {
+    border-color: var(--primary-start);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: none;
+}
+
+/* Telegram-style button press */
+.telegram-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s ease;
+}
+
+.telegram-button:active {
+    transform: scale(0.98);
+}
+
+/* Smooth scrolling like Telegram */
+.telegram-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Telegram-style backdrop blur */
+.telegram-blur {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Telegram-style shadow */
+.telegram-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.telegram-shadow-lg {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Telegram-style divider */
+.telegram-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+    margin: 0.5rem 0;
+}
+
+/* Mobile-specific Telegram enhancements */
+@media (max-width: 768px) {
+
+    /* Prevent text selection on mobile for better UX */
+    .no-select-mobile {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Telegram-style mobile header */
+    .mobile-header-telegram {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Smooth page transitions */
+    .page-transition {
+        animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Touch feedback */
+    .touch-feedback:active {
+        background-color: rgba(0, 0, 0, 0.05);
+        transition: background-color 0s;
+    }
+}
+
+/* Telegram-style loading animation */
+@keyframes telegramPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.telegram-loading {
+    animation: telegramPulse 1.5s ease-in-out infinite;
+}
+
+/* Telegram-style badge */
+.telegram-badge {
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Telegram-style online indicator */
+.online-indicator {
+    width: 12px;
+    height: 12px;
+    background: #4caf50;
+    border-radius: 50%;
+    border: 2px solid white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* Telegram-style typing indicator */
+@keyframes typingDot {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-10px);
+    }
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 8px 12px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-start);
+    border-radius: 50%;
+    animation: typingDot 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Telegram-style swipe actions */
+.swipe-action {
+    position: relative;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.swipe-action.swiped {
+    transform: translateX(-80px);
+}
+
+/* Telegram-style context menu */
+.context-menu {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+    min-width: 200px;
+    animation: fadeIn 0.15s ease;
+}
+
+.context-menu-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.context-menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Telegram-style search bar */
+.telegram-search {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+}
+
+.telegram-search:focus {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Telegram-style floating action button */
+.fab-telegram {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.fab-telegram:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.fab-telegram:active {
+    transform: scale(0.95);
+}
+
+/* Telegram-style bottom navigation (mobile) */
+@media (max-width: 768px) {
+    .bottom-nav-telegram {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+        z-index: 100;
+    }
+
+    .bottom-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 16px;
+        color: var(--text-secondary);
+        transition: color 0.2s ease;
+    }
+
+    .bottom-nav-item.active {
+        color: var(--primary-start);
+    }
+}
