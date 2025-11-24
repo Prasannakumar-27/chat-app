@@ -22,19 +22,18 @@ const Login = () => {
                     "Content-type": "application/json",
                 },
             };
-
+            const API_URL = import.meta.env.VITE_BACKEND_URL;
             const { data } = await axios.post(
-                "/api/user/login",
+                `${API_URL}/api/user/login`,
                 { email, password },
                 config
             );
-
             alert("Login Successful");
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);
             navigate("/chats");
         } catch (error) {
-            alert("Error Occurred: " + error.response.data.message);
+            alert("Error Occurred: " + (error.response?.data?.message || error.message));
             setLoading(false);
         }
     };
