@@ -15,10 +15,16 @@ const HomePage = () => {
     const [showLogin, setShowLogin] = React.useState(true);
 
     return (
-        <div className="App items-center justify-center" style={{
+        <div className="App" style={{
             background: 'var(--gradient-bg)',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            minHeight: '100vh',
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem'
         }}>
             {/* Animated Background Circles */}
             <div style={{
@@ -54,9 +60,9 @@ const HomePage = () => {
 
             <div className="glass-card fade-in" style={{
                 width: '100%',
-                maxWidth: '450px',
+                maxWidth: '480px',
                 padding: '2.5rem',
-                margin: '1rem',
+                margin: '0 auto',
                 zIndex: 1
             }}>
                 {/* Logo/Title */}
