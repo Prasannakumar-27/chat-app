@@ -88,7 +88,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }, [selectedChat]);
 
     useEffect(() => {
-        socket.on("message recieved", (newMessageRecieved) => {
+        if (!socket) return;
+
+        const messageRecievedHandler = (newMessageRecieved) => {
             if (
                 !selectedChatCompare ||
                 selectedChatCompare._id !== newMessageRecieved.chat._id
@@ -98,9 +100,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     setFetchAgain(!fetchAgain);
                 }
             } else {
-                setMessages([...messages, newMessageRecieved]);
+                setMessages((prevMessages) => [...prevMessages, newMessageRecieved]);
             }
-        });
+        };
+
+        socket.on("message recieved", messageRecievedHandler);
+
+        return () => {
+            socket.off("message recieved", messageRecievedHandler);
+        };
     });
 
     const typingHandler = (e) => {
