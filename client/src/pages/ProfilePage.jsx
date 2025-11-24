@@ -93,7 +93,12 @@ const ProfilePage = () => {
             setPassword("");
             setConfirmPassword("");
         } catch (error) {
-            alert("Error Occurred!");
+            console.error("Profile update error:", error);
+            const errorMessage = error.response?.data?.message ||
+                error.response?.data?.error ||
+                error.message ||
+                "Error Occurred!";
+            alert(errorMessage);
             setLoading(false);
         }
     };
