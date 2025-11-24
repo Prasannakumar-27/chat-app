@@ -11,7 +11,7 @@ export default defineConfig({
       '.ngrok.io',
       '.serveo.net',
       'localhost',
-      'chat-app-4xwl.onrender.com'
+      'chat-app-backend-693v.onrender.com'
     ],
     proxy: {
       "/api": {
