@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ChatState } from "../../context/ChatProvider";
 import { FaSearch, FaTimes } from "react-icons/fa";
+import useViewport from "../../hooks/useViewport";
+import "./SideDrawer.css";
 
 const SideDrawer = () => {
     const [search, setSearch] = useState("");
@@ -13,6 +15,7 @@ const SideDrawer = () => {
 
     const { user, setSelectedChat, chats, setChats } = ChatState();
     const navigate = useNavigate();
+    const { isMobile, isTablet } = useViewport();
 
     const logoutHandler = () => {
         localStorage.removeItem("userInfo");
@@ -66,6 +69,14 @@ const SideDrawer = () => {
         }
     };
 
+    const headerPadding = isMobile ? '0.75rem 1rem' : isTablet ? '0.875rem 1.25rem' : '1rem 1.5rem';
+    const headerMargin = isMobile ? '0.5rem 0.5rem 0 0.5rem' : '1rem 1rem 0 1rem';
+    const titleFontSize = isMobile ? '1.25rem' : isTablet ? '1.5rem' : '1.75rem';
+    const avatarSize = isMobile ? 36 : 40;
+    const searchModalPadding = isMobile ? '1.5rem' : '2.5rem';
+    const searchModalWidth = isMobile ? '100%' : '600px';
+    const overlayPadding = isMobile ? '1rem' : '2rem';
+
     return (
         <>
             <div className="glass-card side-drawer-header" style={{
@@ -73,8 +84,8 @@ const SideDrawer = () => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 width: '100%',
-                padding: window.innerWidth <= 640 ? '0.75rem 1rem' : '1rem 1.5rem',
-                margin: window.innerWidth <= 640 ? '0.5rem 0.5rem 0 0.5rem' : '1rem 1rem 0 1rem',
+                padding: headerPadding,
+                margin: headerMargin,
                 background: 'var(--surface-glass)',
                 backdropFilter: 'blur(var(--blur-md)) saturate(180%)',
                 borderRadius: 'var(--radius-xl)',
@@ -88,14 +99,14 @@ const SideDrawer = () => {
                 <button
                     className="btn btn-ghost flex items-center gap-2 hover-lift"
                     onClick={() => setIsSearchOpen(true)}
-                    style={{ padding: window.innerWidth <= 640 ? '0.5rem 0.75rem' : '0.625rem 1rem' }}
+                    style={{ padding: isMobile ? '0.5rem 0.75rem' : '0.625rem 1rem' }}
                 >
                     <FaSearch style={{ color: 'var(--primary-start)' }} />
                     <span className="mobile-hide" style={{ fontWeight: '500' }}>Search User</span>
                 </button>
 
                 <h1 className="gradient-text" style={{
-                    fontSize: window.innerWidth <= 640 ? '1.25rem' : window.innerWidth <= 1024 ? '1.5rem' : '1.75rem',
+                    fontSize: titleFontSize,
                     fontWeight: '700',
                     letterSpacing: '-0.5px'
                 }}>
@@ -118,8 +129,8 @@ const SideDrawer = () => {
                             src={user.pic}
                             alt={user.name}
                             style={{
-                                width: window.innerWidth <= 640 ? "36px" : "40px",
-                                height: window.innerWidth <= 640 ? "36px" : "40px",
+                                width: `${avatarSize}px`,
+                                height: `${avatarSize}px`,
                                 borderRadius: "50%",
                                 objectFit: "cover",
                                 border: '3px solid var(--primary-start)',
@@ -143,15 +154,15 @@ const SideDrawer = () => {
                     justifyContent: "center",
                     backgroundColor: "rgba(0, 0, 0, 0.8)",
                     backdropFilter: 'blur(var(--blur-sm))',
-                    padding: window.innerWidth <= 640 ? '1rem' : '2rem'
+                    padding: overlayPadding
                 }}>
                     <div className="search-modal" style={{
                         background: 'var(--surface-dark)',
-                        padding: window.innerWidth <= 640 ? '1.5rem' : '2.5rem',
+                        padding: searchModalPadding,
                         borderRadius: 'var(--radius-xl)',
                         boxShadow: 'var(--shadow-xl)',
                         width: "100%",
-                        maxWidth: window.innerWidth <= 640 ? '100%' : '600px',
+                        maxWidth: searchModalWidth,
                         position: "relative",
                         zIndex: 10000,
                         maxHeight: '90vh',

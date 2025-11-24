@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { ChatState } from "../context/ChatProvider";
 import axios from "axios";
 import { FaPlus } from "react-icons/fa";
+import useViewport from "../hooks/useViewport";
+import "./MyChats.css";
 
 const MyChats = () => {
     const [loggedUser, setLoggedUser] = useState();
     const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+    const { isMobile, isTablet } = useViewport();
 
     const fetchChats = async () => {
         try {
@@ -37,26 +40,25 @@ const MyChats = () => {
         return users[0]._id === loggedUser._id ? users[1].pic : users[0].pic;
     };
 
+    const titleFontSize = isMobile ? '1.25rem' : isTablet ? '1.375rem' : '1.5rem';
+    const actionFontSize = isMobile ? '0.85rem' : '0.9rem';
+    const actionPadding = isMobile ? '0.5rem 0.75rem' : '0.5rem 1rem';
+    const containerPadding = isMobile ? '1rem' : '1.5rem';
+    const listPadding = isMobile ? '0.75rem' : '1rem';
+    const avatarSize = isMobile ? 40 : isTablet ? 44 : 48;
+    const nameFontSize = isMobile ? '0.9rem' : '1rem';
+    const previewFontSize = isMobile ? '0.8rem' : '0.85rem';
+
     return (
         <div
-            className={`glass-card ${selectedChat ? "hidden md:flex" : "flex"
-                } flex-col fade-in my-chats-container`}
+            className="glass-card flex flex-col fade-in my-chats-container"
             style={{
-                display: selectedChat ? "none" : "flex",
-                flexDirection: "column",
-                padding: window.innerWidth <= 640 ? '1rem' : '1.5rem',
-                width: "100%",
-                height: "100%",
-                borderRadius: 'var(--radius-xl)',
-                background: 'var(--surface-glass)',
-                backdropFilter: 'blur(var(--blur-md)) saturate(180%)',
-                border: '1px solid var(--border-color)',
-                boxShadow: 'var(--shadow-lg)'
+                padding: containerPadding,
             }}
         >
             <div className="my-chats-header" style={{
                 paddingBottom: "1rem",
-                fontSize: window.innerWidth <= 640 ? '1.25rem' : window.innerWidth <= 1024 ? '1.375rem' : '1.5rem',
+                fontSize: titleFontSize,
                 fontWeight: "700",
                 display: "flex",
                 width: "100%",
@@ -68,8 +70,8 @@ const MyChats = () => {
             }}>
                 <span className="gradient-text">My Chats</span>
                 <button className="btn btn-ghost flex items-center gap-2 hover-lift" style={{
-                    fontSize: window.innerWidth <= 640 ? '0.85rem' : '0.9rem',
-                    padding: window.innerWidth <= 640 ? '0.5rem 0.75rem' : '0.5rem 1rem'
+                    fontSize: actionFontSize,
+                    padding: actionPadding
                 }}>
                     <FaPlus /> <span className="mobile-hide">New Group</span>
                 </button>
@@ -77,7 +79,7 @@ const MyChats = () => {
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "1rem",
+                padding: listPadding,
                 background: 'var(--gradient-surface)',
                 width: "100%",
                 height: "100%",
@@ -89,10 +91,10 @@ const MyChats = () => {
                         {chats.map((chat, index) => (
                             <div
                                 onClick={() => setSelectedChat(chat)}
-                                className="hover-lift slide-in chat-item"
+                                className="hover-lift slide-in chat-item chat-item-telegram telegram-transition"
                                 style={{
                                     cursor: "pointer",
-                                    padding: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                                    padding: isMobile ? '0.75rem' : '1rem',
                                     borderRadius: 'var(--radius-md)',
                                     marginBottom: '0.5rem',
                                     background: selectedChat === chat
@@ -115,8 +117,8 @@ const MyChats = () => {
                                         alt="User"
                                         className="chat-avatar"
                                         style={{
-                                            width: window.innerWidth <= 640 ? '40px' : window.innerWidth <= 1024 ? '44px' : '48px',
-                                            height: window.innerWidth <= 640 ? '40px' : window.innerWidth <= 1024 ? '44px' : '48px',
+                                            width: `${avatarSize}px`,
+                                            height: `${avatarSize}px`,
                                             borderRadius: '50%',
                                             objectFit: 'cover',
                                             border: selectedChat === chat ? '3px solid white' : '3px solid var(--primary-start)',
@@ -128,7 +130,7 @@ const MyChats = () => {
                                 <div style={{ flex: 1, minWidth: 0 }}>
                                     <p style={{
                                         fontWeight: '600',
-                                        fontSize: window.innerWidth <= 640 ? '0.9rem' : '1rem',
+                                        fontSize: nameFontSize,
                                         marginBottom: '0.25rem',
                                         whiteSpace: 'nowrap',
                                         overflow: 'hidden',
@@ -140,7 +142,7 @@ const MyChats = () => {
                                     </p>
                                     {chat.latestMessage && (
                                         <p style={{
-                                            fontSize: window.innerWidth <= 640 ? '0.8rem' : '0.85rem',
+                                            fontSize: previewFontSize,
                                             opacity: 0.8,
                                             whiteSpace: 'nowrap',
                                             overflow: 'hidden',

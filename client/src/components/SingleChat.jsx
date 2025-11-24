@@ -4,6 +4,8 @@ import axios from "axios";
 import { FaArrowLeft, FaPaperPlane } from "react-icons/fa";
 import io from "socket.io-client";
 import ScrollableChat from "./ScrollableChat";
+import useViewport from "../hooks/useViewport";
+import "./SingleChat.css";
 
 const ENDPOINT = import.meta.env.VITE_BACKEND_URL;
 var socket, selectedChatCompare;
@@ -150,6 +152,26 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             : selectedChat.users[0].pic;
     };
 
+    const { isMobile, isTablet } = useViewport();
+    const backButtonPadding = isMobile ? '0.625rem' : '0.75rem';
+    const titleFontSize = isMobile ? '1rem' : isTablet ? '1.125rem' : '1.25rem';
+    const typingFontSize = isMobile ? '0.8rem' : '0.85rem';
+    const avatarSize = isMobile ? 40 : isTablet ? 44 : 48;
+    const headerSpacing = isMobile ? '0.75rem' : '1rem';
+    const messagesPadding = isMobile ? '0.75rem' : '1rem';
+    const messageMargin = isMobile ? '0.75rem' : '1rem';
+    const inputGap = isMobile ? '0.5rem' : '0.75rem';
+    const inputPadding = isMobile ? '0.75rem 1rem' : '1rem 1.25rem';
+    const inputRadius = isMobile ? '12px' : '16px';
+    const inputFontSize = isMobile ? '0.9rem' : '0.95rem';
+    const sendButtonWidth = isMobile ? '44px' : 'auto';
+    const emptyCircleSize = isMobile ? 80 : isTablet ? 100 : 120;
+    const emptyIconSize = isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem';
+    const emptyTitleFont = isMobile ? '1.25rem' : isTablet ? '1.5rem' : '1.75rem';
+    const emptyTextFont = isMobile ? '0.875rem' : '1rem';
+    const emptyGap = isMobile ? '0.75rem' : '1rem';
+    const emptyCircleMargin = isMobile ? '0.5rem' : '1rem';
+
     return (
         <>
             {selectedChat ? (
@@ -159,20 +181,20 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        paddingBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem',
-                        marginBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                        paddingBottom: headerSpacing,
+                        marginBottom: headerSpacing,
                         borderBottom: "1px solid var(--border-color)",
-                        gap: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                        gap: headerSpacing,
                         flexWrap: 'wrap'
                     }}>
                         <button
                             onClick={() => setSelectedChat("")}
                             className="back-button md:hidden"
                             style={{
-                                display: window.innerWidth <= 768 ? "flex" : "none",
+                                display: isMobile ? "flex" : "none",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                padding: window.innerWidth <= 640 ? '0.625rem' : '0.75rem',
+                                padding: backButtonPadding,
                                 borderRadius: "var(--radius-md)",
                                 background: "var(--bg-tertiary)",
                                 border: "1px solid var(--border-color)",
@@ -184,18 +206,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             onMouseOver={(e) => e.target.style.background = "rgba(139, 92, 246, 0.2)"}
                             onMouseOut={(e) => e.target.style.background = "rgba(139, 92, 246, 0.1)"}
                         >
-                            <FaArrowLeft style={{ color: 'var(--primary-start)', fontSize: window.innerWidth <= 640 ? '1rem' : '1.125rem' }} />
+                            <FaArrowLeft style={{ color: 'var(--primary-start)', fontSize: isMobile ? '1rem' : '1.125rem' }} />
                         </button>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: window.innerWidth <= 640 ? '0.75rem' : '1rem', flex: 1, minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: headerSpacing, flex: 1, minWidth: 0 }}>
                             {!selectedChat.isGroupChat && (
                                 <img
                                     src={getChatPic()}
                                     alt="User"
                                     className="chat-header-avatar"
                                     style={{
-                                        width: window.innerWidth <= 640 ? '40px' : window.innerWidth <= 1024 ? '44px' : '48px',
-                                        height: window.innerWidth <= 640 ? '40px' : window.innerWidth <= 1024 ? '44px' : '48px',
+                                        width: `${avatarSize}px`,
+                                        height: `${avatarSize}px`,
                                         borderRadius: '50%',
                                         objectFit: 'cover',
                                         border: '3px solid var(--primary-start)',
@@ -206,7 +228,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             )}
                             <div style={{ minWidth: 0, flex: 1 }}>
                                 <h2 style={{
-                                    fontSize: window.innerWidth <= 640 ? '1rem' : window.innerWidth <= 1024 ? '1.125rem' : '1.25rem',
+                                    fontSize: titleFontSize,
                                     fontWeight: '700',
                                     color: 'var(--text-primary)',
                                     marginBottom: '0.125rem',
@@ -218,7 +240,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                 </h2>
                                 {istyping && (
                                     <p style={{
-                                        fontSize: window.innerWidth <= 640 ? '0.8rem' : '0.85rem',
+                                        fontSize: typingFontSize,
                                         color: 'var(--primary-start)',
                                         fontStyle: 'italic'
                                     }}>
@@ -234,13 +256,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "flex-end",
-                        padding: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                        padding: messagesPadding,
                         background: 'var(--bg-tertiary)',
                         width: "100%",
                         flex: 1,
                         borderRadius: 'var(--radius-lg)',
                         overflowY: "hidden",
-                        marginBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                        marginBottom: messageMargin,
                         border: '1px solid var(--border-color)'
                     }}>
                         {loading ? (
@@ -267,16 +289,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     {/* Message Input */}
                     <div className="message-input-container" style={{
                         display: 'flex',
-                        gap: window.innerWidth <= 640 ? '0.5rem' : '0.75rem',
+                        gap: inputGap,
                         alignItems: 'center'
                     }}>
                         <input
                             className="form-input message-input"
                             style={{
                                 flex: 1,
-                                padding: window.innerWidth <= 640 ? '0.75rem 1rem' : '1rem 1.25rem',
-                                borderRadius: window.innerWidth <= 640 ? '12px' : '16px',
-                                fontSize: window.innerWidth <= 640 ? '0.9rem' : '0.95rem'
+                                padding: inputPadding,
+                                borderRadius: inputRadius,
+                                fontSize: inputFontSize
                             }}
                             placeholder="Type your message..."
                             value={newMessage}
@@ -288,14 +310,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             onClick={sendMessage}
                             disabled={!newMessage}
                             style={{
-                                padding: window.innerWidth <= 640 ? '0.75rem 1rem' : '1rem 1.25rem',
-                                borderRadius: window.innerWidth <= 640 ? '12px' : '16px',
+                                padding: inputPadding,
+                                borderRadius: inputRadius,
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '0.5rem',
                                 opacity: newMessage ? 1 : 0.5,
                                 cursor: newMessage ? 'pointer' : 'not-allowed',
-                                minWidth: window.innerWidth <= 640 ? '44px' : 'auto',
+                                minWidth: sendButtonWidth,
                                 minHeight: '44px'
                             }}
                         >
@@ -311,26 +333,26 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     alignItems: "center",
                     justifyContent: "center",
                     height: "100%",
-                    gap: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                    gap: emptyGap,
                     padding: '1rem'
                 }}>
                     <div style={{
-                        width: window.innerWidth <= 640 ? '80px' : window.innerWidth <= 1024 ? '100px' : '120px',
-                        height: window.innerWidth <= 640 ? '80px' : window.innerWidth <= 1024 ? '100px' : '120px',
+                        width: `${emptyCircleSize}px`,
+                        height: `${emptyCircleSize}px`,
                         borderRadius: '50%',
                         background: 'var(--gradient-primary)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: window.innerWidth <= 640 ? '2rem' : window.innerWidth <= 1024 ? '2.5rem' : '3rem',
+                        fontSize: emptyIconSize,
                         color: 'white',
                         boxShadow: 'var(--shadow-glow)',
-                        marginBottom: window.innerWidth <= 640 ? '0.5rem' : '1rem'
+                        marginBottom: emptyCircleMargin
                     }}>
                         💬
                     </div>
                     <p className="gradient-text" style={{
-                        fontSize: window.innerWidth <= 640 ? '1.25rem' : window.innerWidth <= 1024 ? '1.5rem' : '1.75rem',
+                        fontSize: emptyTitleFont,
                         fontWeight: '700',
                         textAlign: 'center',
                         maxWidth: '400px',
@@ -339,7 +361,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         Select a chat to start messaging
                     </p>
                     <p style={{
-                        fontSize: window.innerWidth <= 640 ? '0.875rem' : '1rem',
+                        fontSize: emptyTextFont,
                         color: 'var(--text-secondary)',
                         textAlign: 'center',
                         maxWidth: '350px',

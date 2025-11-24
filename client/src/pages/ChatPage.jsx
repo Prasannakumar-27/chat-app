@@ -1,21 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { ChatState } from "../context/ChatProvider";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import MyChats from "../components/MyChats";
 import ChatBox from "../components/ChatBox";
+import useViewport from "../hooks/useViewport";
+import "./ChatPage.css";
 
 const ChatPage = () => {
     const { user, selectedChat } = ChatState();
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const { width, isMobile } = useViewport();
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
+    const gridTemplateColumns = useMemo(() => {
+        if (isMobile) return "1fr";
+        if (width <= 1024) return "320px minmax(0, 1fr)";
+        if (width <= 1366) return "360px minmax(0, 1fr)";
+        return "400px minmax(0, 1fr)";
+    }, [isMobile, width]);
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const gridPadding = useMemo(() => {
+        if (isMobile) return "0.25rem";
+        if (width <= 1024) return "0.75rem";
+        return "1.25rem";
+    }, [isMobile, width]);
+
+    const gridGap = useMemo(() => {
+        if (isMobile) return "0";
+        if (width <= 1024) return "0.75rem";
+        return "1rem";
+    }, [isMobile, width]);
+
+    const gridHeight = useMemo(
+        () => (isMobile ? "calc(100vh - 72px)" : "calc(100vh - 110px)"),
+        [isMobile]
+    );
+
+    const listPaneClasses = [
+        "chat-pane",
+        "chat-pane--list",
+        isMobile ? "chat-pane--mobile" : "",
+        !isMobile || !selectedChat ? "chat-pane--active" : "",
+        isMobile && selectedChat ? "chat-pane--hidden" : "",
+    ]
+        .filter(Boolean)
+        .join(" ");
+
+    const conversationPaneClasses = [
+        "chat-pane",
+        "chat-pane--conversation",
+        isMobile ? "chat-pane--mobile" : "",
+        !isMobile || selectedChat ? "chat-pane--active" : "",
+        isMobile && !selectedChat ? "chat-pane--hidden" : "",
+    ]
+        .filter(Boolean)
+        .join(" ");
 
     if (!user) {
         return (
@@ -33,55 +70,21 @@ const ChatPage = () => {
 
     return (
         <div className="chat-page-container" style={{
-            background: 'var(--gradient-bg)',
-            minHeight: '100vh',
-            height: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-            position: 'relative'
+            "--chat-grid-columns": gridTemplateColumns,
+            "--chat-grid-padding": gridPadding,
+            "--chat-grid-gap": gridGap,
+            "--chat-grid-height": gridHeight
         }}>
             {user && <SideDrawer />}
-            <div className="chat-page-grid" style={{
-                display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : window.innerWidth <= 1024 ? '350px 1fr' : '380px 1fr',
-                gap: isMobile ? '0' : '1rem',
-                padding: isMobile ? '0' : '1rem',
-                height: isMobile ? 'calc(100vh - 80px)' : 'calc(100vh - 100px)',
-                maxWidth: '100%',
-                margin: '0 auto',
-                width: '100%',
-                overflow: 'hidden',
-                position: 'relative'
-            }}>
-                {/* Telegram-style slide animation for mobile */}
+            <div className="chat-page-grid">
                 {user && (
-                    <div style={{
-                        display: isMobile && selectedChat ? 'none' : 'flex',
-                        height: '100%',
-                        overflow: 'hidden',
-                        transform: isMobile && selectedChat ? 'translateX(-100%)' : 'translateX(0)',
-                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                        position: isMobile ? 'absolute' : 'relative',
-                        width: isMobile ? '100%' : 'auto',
-                        zIndex: isMobile && !selectedChat ? 2 : 1
-                    }}>
+                    <div className={listPaneClasses}>
                         <MyChats />
                     </div>
                 )}
 
-                {/* Chat window with slide-in animation */}
                 {user && (
-                    <div style={{
-                        display: isMobile && !selectedChat ? 'none' : 'flex',
-                        height: '100%',
-                        overflow: 'hidden',
-                        transform: isMobile && selectedChat ? 'translateX(0)' : isMobile ? 'translateX(100%)' : 'translateX(0)',
-                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                        position: isMobile ? 'absolute' : 'relative',
-                        width: isMobile ? '100%' : 'auto',
-                        zIndex: isMobile && selectedChat ? 2 : 1
-                    }}>
+                    <div className={conversationPaneClasses}>
                         <ChatBox />
                     </div>
                 )}
