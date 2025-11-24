@@ -123,7 +123,7 @@ const ProfilePage = () => {
     return (
         <div style={{
             minHeight: "100vh",
-            background: "linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%)",
+            background: "var(--gradient-bg)",
             padding: "2rem"
         }}>
             <div style={{
@@ -155,10 +155,11 @@ const ProfilePage = () => {
                 {/* Profile Card */}
                 <div className="glass-card" style={{
                     padding: "3rem",
-                    borderRadius: "24px",
-                    background: "rgba(255, 255, 255, 0.95)",
-                    backdropFilter: "blur(10px)",
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                    borderRadius: "var(--radius-xl)",
+                    background: "var(--surface-glass)",
+                    backdropFilter: "blur(var(--blur-md)) saturate(180%)",
+                    boxShadow: "var(--shadow-xl)",
+                    border: "1px solid var(--border-color)"
                 }}>
                     <h1 className="gradient-text" style={{
                         fontSize: "2.5rem",
@@ -196,7 +197,7 @@ const ProfilePage = () => {
                                     position: "absolute",
                                     bottom: "0.5rem",
                                     right: "0.5rem",
-                                    background: "linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%)",
+                                    background: "var(--gradient-primary)",
                                     color: "white",
                                     width: "3rem",
                                     height: "3rem",
@@ -205,8 +206,8 @@ const ProfilePage = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                                    transition: "all 0.2s"
+                                    boxShadow: "var(--shadow-md)",
+                                    transition: "all var(--transition-normal)"
                                 }}
                                 onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.1)"}
                                 onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
@@ -280,8 +281,10 @@ const ProfilePage = () => {
                                 style={{
                                     fontSize: "1rem",
                                     padding: "0.875rem 1.25rem",
-                                    background: "rgba(0, 0, 0, 0.05)",
-                                    cursor: "not-allowed"
+                                    background: "var(--bg-tertiary)",
+                                    cursor: "not-allowed",
+                                    color: "var(--text-muted)",
+                                    border: "1px solid var(--border-color)"
                                 }}
                             />
                         </div>
@@ -372,7 +375,7 @@ const ProfilePage = () => {
                                     padding: "1rem 2rem",
                                     fontSize: "1.05rem",
                                     fontWeight: "600",
-                                    background: "linear-gradient(135deg, #e53e3e 0%, #c53030 100%)",
+                                    background: "linear-gradient(135deg, var(--error) 0%, #dc2626 100%)",
                                     color: "white",
                                     border: "none"
                                 }}

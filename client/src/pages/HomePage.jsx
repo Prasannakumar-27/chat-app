@@ -16,7 +16,7 @@ const HomePage = () => {
 
     return (
         <div className="App items-center justify-center" style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'var(--gradient-bg)',
             position: 'relative',
             overflow: 'hidden'
         }}>
@@ -26,20 +26,22 @@ const HomePage = () => {
                 width: '500px',
                 height: '500px',
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.1)',
+                background: 'var(--primary-light)',
                 top: '-250px',
                 left: '-250px',
-                animation: 'float 20s ease-in-out infinite'
+                animation: 'float 20s ease-in-out infinite',
+                filter: 'blur(80px)'
             }}></div>
             <div style={{
                 position: 'absolute',
                 width: '400px',
                 height: '400px',
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.1)',
+                background: 'var(--secondary-cyan-light)',
                 bottom: '-200px',
                 right: '-200px',
-                animation: 'float 15s ease-in-out infinite reverse'
+                animation: 'float 15s ease-in-out infinite reverse',
+                filter: 'blur(60px)'
             }}></div>
 
             <style>{`
@@ -80,9 +82,9 @@ const HomePage = () => {
                     display: 'flex',
                     gap: '0.75rem',
                     marginBottom: '2rem',
-                    background: 'rgba(102, 126, 234, 0.08)',
+                    background: 'var(--bg-tertiary)',
                     padding: '0.5rem',
-                    borderRadius: '16px'
+                    borderRadius: 'var(--radius-lg)'
                 }}>
                     <button
                         className={`w-full py-2 rounded-lg transition-all duration-300 ${showLogin ? "btn-primary" : "btn-ghost"

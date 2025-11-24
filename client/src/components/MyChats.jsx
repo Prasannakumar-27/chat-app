@@ -44,12 +44,13 @@ const MyChats = () => {
             style={{
                 display: selectedChat ? "none" : "flex",
                 flexDirection: "column",
-                padding: window.innerWidth <= 640 ? '1rem' : window.innerWidth <= 1024 ? '1.25rem' : '1.5rem',
+                padding: window.innerWidth <= 640 ? '1rem' : '1.5rem',
                 width: "100%",
                 height: "100%",
-                borderRadius: window.innerWidth <= 640 ? '20px' : '24px',
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(10px)',
+                borderRadius: 'var(--radius-xl)',
+                background: 'var(--surface-glass)',
+                backdropFilter: 'blur(var(--blur-md)) saturate(180%)',
+                border: '1px solid var(--border-color)',
                 boxShadow: 'var(--shadow-lg)'
             }}
         >
@@ -77,10 +78,10 @@ const MyChats = () => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "1rem",
-                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)',
+                background: 'var(--gradient-surface)',
                 width: "100%",
                 height: "100%",
-                borderRadius: "20px",
+                borderRadius: 'var(--radius-lg)',
                 overflowY: "hidden"
             }}>
                 {chats ? (
@@ -91,19 +92,20 @@ const MyChats = () => {
                                 className="hover-lift slide-in chat-item"
                                 style={{
                                     cursor: "pointer",
-                                    padding: window.innerWidth <= 640 ? '0.75rem' : window.innerWidth <= 1024 ? '0.875rem' : '1rem',
-                                    borderRadius: window.innerWidth <= 640 ? '12px' : '16px',
-                                    marginBottom: window.innerWidth <= 640 ? '0.5rem' : '0.75rem',
+                                    padding: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                                    borderRadius: 'var(--radius-md)',
+                                    marginBottom: '0.5rem',
                                     background: selectedChat === chat
-                                        ? "linear-gradient(135deg, var(--primary-start), var(--primary-end))"
-                                        : "white",
-                                    color: selectedChat === chat ? "white" : "var(--text-primary)",
-                                    boxShadow: selectedChat === chat ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+                                        ? "var(--gradient-primary)"
+                                        : "var(--bg-tertiary)",
+                                    color: "var(--text-primary)",
+                                    boxShadow: selectedChat === chat ? 'var(--shadow-glow)' : 'var(--shadow-sm)',
                                     transition: 'all var(--transition-normal)',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: window.innerWidth <= 640 ? '0.75rem' : '1rem',
-                                    animationDelay: `${index * 0.05}s`
+                                    gap: '1rem',
+                                    animationDelay: `${index * 0.05}s`,
+                                    border: selectedChat === chat ? 'none' : '1px solid var(--border-color)'
                                 }}
                                 key={chat._id}
                             >

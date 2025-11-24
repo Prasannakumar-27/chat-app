@@ -75,14 +75,15 @@ const SideDrawer = () => {
                 width: '100%',
                 padding: window.innerWidth <= 640 ? '0.75rem 1rem' : '1rem 1.5rem',
                 margin: window.innerWidth <= 640 ? '0.5rem 0.5rem 0 0.5rem' : '1rem 1rem 0 1rem',
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: window.innerWidth <= 640 ? '16px' : '20px',
+                background: 'var(--surface-glass)',
+                backdropFilter: 'blur(var(--blur-md)) saturate(180%)',
+                borderRadius: 'var(--radius-xl)',
                 boxShadow: 'var(--shadow-lg)',
                 position: 'relative',
                 zIndex: 100,
                 gap: '0.5rem',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                border: '1px solid var(--border-color)'
             }}>
                 <button
                     className="btn btn-ghost flex items-center gap-2 hover-lift"
@@ -140,15 +141,15 @@ const SideDrawer = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: "rgba(0, 0, 0, 0.6)",
-                    backdropFilter: 'blur(5px)',
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    backdropFilter: 'blur(var(--blur-sm))',
                     padding: window.innerWidth <= 640 ? '1rem' : '2rem'
                 }}>
                     <div className="search-modal" style={{
-                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 255, 0.98) 100%)',
+                        background: 'var(--surface-dark)',
                         padding: window.innerWidth <= 640 ? '1.5rem' : '2.5rem',
-                        borderRadius: window.innerWidth <= 640 ? '20px' : '24px',
-                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                        borderRadius: 'var(--radius-xl)',
+                        boxShadow: 'var(--shadow-xl)',
                         width: "100%",
                         maxWidth: window.innerWidth <= 640 ? '100%' : '600px',
                         position: "relative",
@@ -156,7 +157,8 @@ const SideDrawer = () => {
                         maxHeight: '90vh',
                         display: 'flex',
                         flexDirection: 'column',
-                        animation: 'slideIn 0.3s ease-out'
+                        animation: 'slideIn 0.3s ease-out',
+                        border: '1px solid var(--border-color)'
                     }}>
                         <button
                             onClick={() => setIsSearchOpen(false)}
@@ -216,14 +218,14 @@ const SideDrawer = () => {
                                         className="hover-lift"
                                         style={{
                                             cursor: "pointer",
-                                            background: 'rgba(139, 92, 246, 0.05)',
+                                            background: 'var(--bg-tertiary)',
                                             padding: "1rem 1.25rem",
-                                            borderRadius: "16px",
+                                            borderRadius: "var(--radius-md)",
                                             display: "flex",
                                             alignItems: "center",
                                             gap: "1rem",
-                                            transition: 'all 0.3s ease',
-                                            border: '1px solid rgba(139, 92, 246, 0.1)'
+                                            transition: 'all var(--transition-normal)',
+                                            border: '1px solid var(--border-color)'
                                         }}
                                     >
                                         <img src={user.pic} alt={user.name} style={{

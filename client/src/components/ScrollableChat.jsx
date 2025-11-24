@@ -96,8 +96,8 @@ const ScrollableChat = ({ messages }) => {
 
                                 <div className="hover-lift message-bubble" style={{
                                     background: isOwnMessage
-                                        ? 'linear-gradient(135deg, var(--primary-start), var(--primary-end))'
-                                        : 'white',
+                                        ? 'var(--gradient-primary)'
+                                        : 'var(--surface-light)',
                                     color: isOwnMessage ? 'white' : 'var(--text-primary)',
                                     borderRadius: isOwnMessage
                                         ? window.innerWidth <= 640 ? '16px 16px 4px 16px' : '20px 20px 4px 20px'
@@ -106,7 +106,7 @@ const ScrollableChat = ({ messages }) => {
                                     boxShadow: isOwnMessage ? 'var(--shadow-md)' : 'var(--shadow-sm)',
                                     wordWrap: 'break-word',
                                     position: 'relative',
-                                    border: isOwnMessage ? 'none' : '1px solid rgba(0, 0, 0, 0.05)'
+                                    border: isOwnMessage ? 'none' : '1px solid var(--border-color)'
                                 }}>
                                     <p style={{
                                         margin: 0,

@@ -161,7 +161,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         alignItems: "center",
                         paddingBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem',
                         marginBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem',
-                        borderBottom: "2px solid rgba(102, 126, 234, 0.1)",
+                        borderBottom: "1px solid var(--border-color)",
                         gap: window.innerWidth <= 640 ? '0.75rem' : '1rem',
                         flexWrap: 'wrap'
                     }}>
@@ -173,11 +173,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                 alignItems: "center",
                                 justifyContent: "center",
                                 padding: window.innerWidth <= 640 ? '0.625rem' : '0.75rem',
-                                borderRadius: "12px",
-                                background: "rgba(139, 92, 246, 0.1)",
-                                border: "none",
+                                borderRadius: "var(--radius-md)",
+                                background: "var(--bg-tertiary)",
+                                border: "1px solid var(--border-color)",
                                 cursor: "pointer",
-                                transition: "all 0.2s",
+                                transition: "all var(--transition-normal)",
                                 minWidth: '44px',
                                 minHeight: '44px'
                             }}
@@ -235,12 +235,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         flexDirection: "column",
                         justifyContent: "flex-end",
                         padding: window.innerWidth <= 640 ? '0.75rem' : '1rem',
-                        background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%)',
+                        background: 'var(--bg-tertiary)',
                         width: "100%",
                         flex: 1,
-                        borderRadius: window.innerWidth <= 640 ? '16px' : '20px',
+                        borderRadius: 'var(--radius-lg)',
                         overflowY: "hidden",
-                        marginBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem'
+                        marginBottom: window.innerWidth <= 640 ? '0.75rem' : '1rem',
+                        border: '1px solid var(--border-color)'
                     }}>
                         {loading ? (
                             <div style={{
@@ -317,13 +318,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         width: window.innerWidth <= 640 ? '80px' : window.innerWidth <= 1024 ? '100px' : '120px',
                         height: window.innerWidth <= 640 ? '80px' : window.innerWidth <= 1024 ? '100px' : '120px',
                         borderRadius: '50%',
-                        background: 'linear-gradient(135deg, var(--primary-start), var(--primary-end))',
+                        background: 'var(--gradient-primary)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         fontSize: window.innerWidth <= 640 ? '2rem' : window.innerWidth <= 1024 ? '2.5rem' : '3rem',
                         color: 'white',
-                        boxShadow: 'var(--shadow-lg)',
+                        boxShadow: 'var(--shadow-glow)',
                         marginBottom: window.innerWidth <= 640 ? '0.5rem' : '1rem'
                     }}>
                         💬

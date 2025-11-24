@@ -33,8 +33,9 @@ const ChatPage = () => {
 
     return (
         <div className="chat-page-container" style={{
-            background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+            background: 'var(--gradient-bg)',
             minHeight: '100vh',
+            height: '100vh',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -43,11 +44,11 @@ const ChatPage = () => {
             {user && <SideDrawer />}
             <div className="chat-page-grid" style={{
                 display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : window.innerWidth <= 1024 ? '1fr 1.5fr' : '1fr 2fr',
-                gap: isMobile ? '0' : window.innerWidth <= 1024 ? '0.75rem' : '1rem',
-                padding: isMobile ? '0.5rem' : window.innerWidth <= 1024 ? '0.75rem' : '1rem',
-                height: 'calc(100vh - 100px)',
-                maxWidth: window.innerWidth <= 1024 ? '100%' : window.innerWidth <= 1440 ? '1280px' : '1400px',
+                gridTemplateColumns: isMobile ? '1fr' : window.innerWidth <= 1024 ? '350px 1fr' : '380px 1fr',
+                gap: isMobile ? '0' : '1rem',
+                padding: isMobile ? '0' : '1rem',
+                height: isMobile ? 'calc(100vh - 80px)' : 'calc(100vh - 100px)',
+                maxWidth: '100%',
                 margin: '0 auto',
                 width: '100%',
                 overflow: 'hidden',
