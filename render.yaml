@@ -7,4 +7,5 @@ services:
     envVars:
       MONGO_URI: "mongodb+srv://prasanna:user%40123@chat.utr8ma8.mongodb.net/?appName=chat"
       JWT_SECRET: "prassana123"
+      CLIENT_URL: "https://chats-app-nine.vercel.app/"
     autoDeploy: true

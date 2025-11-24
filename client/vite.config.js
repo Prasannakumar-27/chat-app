@@ -10,7 +10,8 @@ export default defineConfig({
       '.loca.lt',
       '.ngrok.io',
       '.serveo.net',
-      'localhost'
+      'localhost',
+      'chat-app-4xwl.onrender.com'
     ],
     proxy: {
       "/api": {

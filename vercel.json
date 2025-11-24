@@ -5,6 +5,13 @@
             "destination": "https://chat-app-backend.onrender.com/api/$1"
         }
     ],
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html",
+            "type": 200
+        }
+    ],
     "buildCommand": "npm run build",
     "outputDirectory": "client/dist"
 }
