@@ -1,0 +1,10 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://chat-app-backend.onrender.com/api/$1"
+        }
+    ],
+    "buildCommand": "npm run build",
+    "outputDirectory": "client/dist"
+}
