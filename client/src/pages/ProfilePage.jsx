@@ -44,11 +44,15 @@ const ProfilePage = () => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    setPic(data.url.toString());
+                    // Ensure HTTPS URL
+                    const imageUrl = data.url.toString().replace('http://', 'https://');
+                    setPic(imageUrl);
+                    console.log("Image uploaded successfully:", imageUrl);
                     setPicLoading(false);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.error("Image upload error:", err);
+                    alert("Failed to upload image. Please try again.");
                     setPicLoading(false);
                 });
         } else {
