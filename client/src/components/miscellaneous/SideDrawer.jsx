@@ -202,7 +202,7 @@ const SideDrawer = () => {
                             Search Users
                         </h2>
 
-                        <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                        <div className="flex flex-col gap-3" style={{ marginBottom: '1.5rem' }}>
                             <input
                                 placeholder="Search by name or email"
                                 className="form-input"
@@ -211,7 +211,7 @@ const SideDrawer = () => {
                                 onChange={(e) => setSearch(e.target.value)}
                                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                             />
-                            <button onClick={handleSearch} className="btn btn-primary" style={{ padding: '0.75rem 1.5rem' }}>
+                            <button onClick={handleSearch} className="btn btn-primary" style={{ padding: '0.75rem 1.5rem', width: '100%' }}>
                                 Go
                             </button>
                         </div>

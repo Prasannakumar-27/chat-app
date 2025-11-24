@@ -161,6 +161,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const messagesPadding = isMobile ? '0.75rem' : '1rem';
     const messageMargin = isMobile ? '0.75rem' : '1rem';
     const inputGap = isMobile ? '0.5rem' : '0.75rem';
+    const inputDirection = isMobile ? 'column' : 'row';
     const inputPadding = isMobile ? '0.75rem 1rem' : '1rem 1.25rem';
     const inputRadius = isMobile ? '12px' : '16px';
     const inputFontSize = isMobile ? '0.9rem' : '0.95rem';
@@ -289,8 +290,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     {/* Message Input */}
                     <div className="message-input-container" style={{
                         display: 'flex',
+                        flexDirection: inputDirection,
                         gap: inputGap,
-                        alignItems: 'center'
+                        alignItems: isMobile ? 'stretch' : 'center'
                     }}>
                         <input
                             className="form-input message-input"
@@ -318,6 +320,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                 opacity: newMessage ? 1 : 0.5,
                                 cursor: newMessage ? 'pointer' : 'not-allowed',
                                 minWidth: sendButtonWidth,
+                                width: isMobile ? '100%' : 'auto',
                                 minHeight: '44px'
                             }}
                         >

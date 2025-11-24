@@ -237,18 +237,9 @@ const ProfilePage = () => {
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={updateHandler} style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "1.5rem"
-                    }}>
-                        <div>
-                            <label className="form-label" style={{
-                                fontSize: "1rem",
-                                fontWeight: "600",
-                                marginBottom: "0.5rem",
-                                display: "block"
-                            }}>
+                    <form onSubmit={updateHandler} className="flex flex-col gap-4">
+                        <div className="form-group">
+                            <label className="form-label" style={{ fontSize: "1rem", fontWeight: "600" }}>
                                 Name
                             </label>
                             <input
@@ -264,13 +255,8 @@ const ProfilePage = () => {
                             />
                         </div>
 
-                        <div>
-                            <label className="form-label" style={{
-                                fontSize: "1rem",
-                                fontWeight: "600",
-                                marginBottom: "0.5rem",
-                                display: "block"
-                            }}>
+                        <div className="form-group">
+                            <label className="form-label" style={{ fontSize: "1rem", fontWeight: "600" }}>
                                 Email
                             </label>
                             <input
@@ -289,13 +275,8 @@ const ProfilePage = () => {
                             />
                         </div>
 
-                        <div>
-                            <label className="form-label" style={{
-                                fontSize: "1rem",
-                                fontWeight: "600",
-                                marginBottom: "0.5rem",
-                                display: "block"
-                            }}>
+                        <div className="form-group">
+                            <label className="form-label" style={{ fontSize: "1rem", fontWeight: "600" }}>
                                 New Password (Optional)
                             </label>
                             <input
@@ -311,13 +292,8 @@ const ProfilePage = () => {
                             />
                         </div>
 
-                        <div>
-                            <label className="form-label" style={{
-                                fontSize: "1rem",
-                                fontWeight: "600",
-                                marginBottom: "0.5rem",
-                                display: "block"
-                            }}>
+                        <div className="form-group">
+                            <label className="form-label" style={{ fontSize: "1rem", fontWeight: "600" }}>
                                 Confirm New Password
                             </label>
                             <input
