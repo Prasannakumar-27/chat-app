@@ -15,7 +15,8 @@ const MyChats = () => {
                 },
             };
 
-            const { data } = await axios.get("/api/chat", config);
+            const API_URL = import.meta.env.VITE_BACKEND_URL;
+            const { data } = await axios.get(`${API_URL}/api/chat`, config);
             setChats(data);
         } catch (error) {
             alert("Failed to Load the chats");

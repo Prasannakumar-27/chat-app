@@ -5,7 +5,7 @@ import { FaArrowLeft, FaPaperPlane } from "react-icons/fa";
 import io from "socket.io-client";
 import ScrollableChat from "./ScrollableChat";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = import.meta.env.VITE_BACKEND_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -32,7 +32,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             setLoading(true);
 
             const { data } = await axios.get(
-                `/api/message/${selectedChat._id}`,
+                `${ENDPOINT}/api/message/${selectedChat._id}`,
                 config
             );
 
@@ -57,7 +57,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 };
                 setNewMessage("");
                 const { data } = await axios.post(
-                    "/api/message",
+                    `${ENDPOINT}/api/message`,
                     {
                         content: newMessage,
                         chatId: selectedChat,

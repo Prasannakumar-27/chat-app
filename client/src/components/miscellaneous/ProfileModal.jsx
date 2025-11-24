@@ -70,8 +70,9 @@ const ProfileModal = ({ user, children }) => {
                 },
             };
 
+            const API_URL = import.meta.env.VITE_BACKEND_URL;
             const { data } = await axios.put(
-                "/api/user/profile",
+                `${API_URL}/api/user/profile`,
                 {
                     name,
                     pic,
